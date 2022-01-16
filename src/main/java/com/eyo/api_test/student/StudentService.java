@@ -9,16 +9,13 @@ import java.util.List;
 @Service
 public class StudentService {
 
-    public List<Student> getStudents() {
-        return List.of(
-                new Student(
-                        1L,
-                        "Kojo",
-                        38,
-                        LocalDate.of(1999, Month.AUGUST, 7),
-                        "kj@mail.com"
+    private final StudentRepository studentRepository;
 
-                )
-        );
+    public StudentService(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
+
+    public List<Student> getStudents() {
+        return studentRepository.findAll();
     }
 }
